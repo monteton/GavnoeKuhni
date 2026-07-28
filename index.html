@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f8f6f2">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>Главное-Кухня — Премиальные кухни на заказ в Москве</title>
+  <meta name="description" content="Главное-Кухня: Авторские кухни на заказ в Москве. Индивидуальный 3D-проект, фурнитура Blum, гарантия 10 лет. Рассчитайте стоимость за 2 минуты.">
+  <meta name="keywords" content="кухни на заказ Москва, кухни по индивидуальным размерам Москва, авторские кухни Москва, кухня под ключ Москва, производство кухонь Москва">
+  <meta property="og:title" content="Главное-Кухня — Премиальные кухни на заказ в Москве">
+  <meta property="og:description" content="840+ реализованных проектов. 3D-проект бесплатно. Гарантия 10 лет. Рассрочка 0%.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- === SCROLL PROGRESS BAR === -->
+  <div class="scroll-progress" id="scrollProgress" role="progressbar" aria-label="Прогресс чтения"></div>
+
+  <!-- === PARTICLES CANVAS === -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- === CURSOR GLOW === -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- === HEADER === -->
+  <header class="header" id="mainHeader">
+    <div class="header-top-bar">
+      <span>📍 Шоурум: Москва, ул. Дербеневская, 11 · 10:00–20:00</span>
+      <span>🏭 Собственная фабрика 2500 м² в МО</span>
+      <span>⭐ Рейтинг 4.9 на Яндекс.Картах (184+ отзыва)</span>
+    </div>
+    <div class="header-container">
+      <a href="#hero" class="logo-img-wrap" aria-label="Главное-Кухня — на главную">
+        <img src="images/logo.svg" alt="Главное-Кухня логотип" class="logo-img">
+      </a>
+      <nav class="nav-menu">
+        <a href="#gallery3d">3D-Галерея</a>
+        <a href="#catalog">Каталог</a>
+        <a href="#advantages">Почему мы</a>
+        <a href="#objections">Гарантии</a>
+        <a href="#quiz">Расчёт</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <div class="header-contacts">
+        <a href="tel:+74951234567" class="phone-link">+7 (495) 123-45-67</a>
+        <button class="btn btn-primary btn-sm" onclick="openLegalModal('callback')">Заказать звонок</button>
+      </div>
+      <button class="burger-btn" id="burgerBtn" onclick="toggleMobileMenu()" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="#gallery3d" onclick="toggleMobileMenu()">3D-Галерея</a>
+      <a href="#catalog" onclick="toggleMobileMenu()">Каталог</a>
+      <a href="#advantages" onclick="toggleMobileMenu()">Почему мы</a>
+      <a href="#objections" onclick="toggleMobileMenu()">Гарантии</a>
+      <a href="#quiz" onclick="toggleMobileMenu()">Расчет стоимости</a>
+      <a href="#reviews" onclick="toggleMobileMenu()">Отзывы</a>
+      <a href="#contacts" onclick="toggleMobileMenu()">Контакты</a>
+      <a href="tel:+74951234567" class="btn btn-primary mt-4">+7 (495) 123-45-67</a>
+    </nav>
+  </header>
+
+  <!-- === HERO === -->
+  <section class="hero" id="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+
+    <!-- Floating ambient orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- === HERO LOGO (large center, upper space) === -->
+    <div class="hero-logo-showcase reveal-up">
+      <img src="images/logo.svg" alt="Главное-Кухня" class="hero-logo-img">
+    </div>
+
+    <div class="hero-content" id="heroContent">
+      <div class="badge hero-badge reveal-up">
+        <span class="badge-dot"></span> Собственная фабрика в МО · Цена фиксируется в договоре
+      </div>
+
+      <h1 class="hero-title reveal-up delay-1">
+        Кухня на заказ<br>от фабрики — <em class="shimmer-text">без наценок салона</em>
+      </h1>
+
+      <p class="hero-subtitle reveal-up delay-2">
+        Замер, 3D-проект, производство на Homag и монтаж «под ключ».<br>
+        Цена в смете = цена в договоре. Ни копейки сверху.
+      </p>
+
+      <div class="hero-actions reveal-up delay-3">
+        <button class="btn btn-primary btn-glow btn-hero" onclick="scrollToElement('quiz')">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 7H6a2 2 0 00-2 2v9a2 2 0 002 2h9a2 2 0 002-2v-3M16 5H21V10M21 5L12 14"/></svg>
+          Рассчитать стоимость за 2 мин + Скидка 15% →
+        </button>
+        <button class="btn btn-glass btn-hero" onclick="scrollToElement('gallery3d')">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+          Смотреть 3D-модели 360°
+        </button>
+      </div>
+
+      <!-- Trust Metrics -->
+      <div class="hero-trust reveal-up delay-4">
+        <div class="trust-item">
+          <span class="trust-num counter" data-target="840">0</span><span class="trust-num">+</span>
+          <span class="trust-lbl">Готовых проектов</span>
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <span class="trust-num">4.9 ★</span>
+          <span class="trust-lbl">Яндекс.Карты</span>
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <span class="trust-num">10 лет</span>
+          <span class="trust-lbl">Гарантия в договоре</span>
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <span class="trust-num">0%</span>
+          <span class="trust-lbl">Рассрочка без банка</span>
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <span class="trust-num">0 ₽</span>
+          <span class="trust-lbl">3D-проект и замер</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-hint">
+      <div class="scroll-hint-line"></div>
+      <span>Листайте вниз</span>
+    </div>
+  </section>
+
+  <!-- === 3D KITCHEN GALLERY === -->
+  <section id="gallery3d" class="section gallery-section">
+    <div class="container">
+      <div class="section-header text-center reveal-up">
+        <div class="badge">Интерактивная галерея</div>
+        <h2>Рассмотрите кухню со всех сторон</h2>
+        <p class="section-desc">Поверните кухню мышью или стрелками — как будто уже стоите у неё</p>
+      </div>
+
+      <div class="viewer3d-wrap reveal-up">
+        <!-- 3D Scene -->
+        <div class="viewer3d" id="viewer3d">
+          <!-- Rotating stage -->
+          <div class="scene3d" id="scene3d">
+            <div class="scene3d-card" data-angle="0">
+              <img src="images/kitchen_v1.webp" alt="Кухня — вид спереди">
+              <div class="view-label">Вид спереди — Остров</div>
+            </div>
+            <div class="scene3d-card" data-angle="90">
+              <img src="images/kitchen_v2.webp" alt="Кухня — вид сбоку">
+              <div class="view-label">Вид сбоку — Обеденная зона</div>
+            </div>
+            <div class="scene3d-card" data-angle="180">
+              <img src="images/kitchen_v3.webp" alt="Кухня — рабочая зона">
+              <div class="view-label">Рабочая зона — Колонна с техникой</div>
+            </div>
+            <div class="scene3d-card" data-angle="270">
+              <img src="images/kitchen_v4.webp" alt="Кухня — вид сверху">
+              <div class="view-label">Вид сверху — Планировка</div>
+            </div>
+          </div>
+
+          <!-- Controls overlay -->
+          <div class="viewer3d-controls">
+            <button class="ctrl-btn" id="rotateLeft" onclick="rotateScene(-1)" title="Повернуть влево">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            </button>
+            <div class="ctrl-hint">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M3 12h3m12 0h3M12 3v3m0 12v3"/></svg>
+              <span>Тяните для поворота</span>
+            </div>
+            <button class="ctrl-btn" id="rotateRight" onclick="rotateScene(1)" title="Повернуть вправо">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- View Dot Indicators -->
+        <div class="viewer3d-dots">
+          <button class="dot active" onclick="jumpToView(0)">Фронт</button>
+          <button class="dot" onclick="jumpToView(1)">Сбоку</button>
+          <button class="dot" onclick="jumpToView(2)">Зона</button>
+          <button class="dot" onclick="jumpToView(3)">Сверху</button>
+        </div>
+
+        <!-- Spec sidebar -->
+        <div class="viewer3d-specs" id="viewerSpecs">
+          <h4>Nordic Minimal — Graphite Gold</h4>
+          <ul class="spec-list">
+            <li><span class="spec-icon">🪨</span><div><strong>Столешница</strong><span>Кварцевый агломерат Silestone</span></div></li>
+            <li><span class="spec-icon">🔧</span><div><strong>Фурнитура</strong><span>Blum Legrabox (Австрия)</span></div></li>
+            <li><span class="spec-icon">🌿</span><div><strong>Материал корпуса</strong><span>ЛДСП Egger E0.5</span></div></li>
+            <li><span class="spec-icon">✨</span><div><strong>Фасады</strong><span>FENIX NTM — нанотехнологическая матовость</span></div></li>
+            <li><span class="spec-icon">💡</span><div><strong>Подсветка</strong><span>LED-профиль Sense8, RGB+W</span></div></li>
+            <li><span class="spec-icon">🛡️</span><div><strong>Гарантия</strong><span>10 лет — официальный договор</span></div></li>
+          </ul>
+          <button class="btn btn-primary btn-full mt-4" onclick="openLegalModal('callback')">Хочу такую кухню</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === WHY WE — KINETIC CARDS === -->
+  <section id="advantages" class="section advantages-section">
+    <div class="container">
+      <div class="section-header text-center reveal-up">
+        <div class="badge">Факты, а не слова</div>
+        <h2>Чем мы отличаемся от мебельного салона<br>и бригады с Авито</h2>
+      </div>
+      <div class="adv-comparison reveal-up">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Критерий</th>
+              <th class="highlight-col">«Главное-Кухня»</th>
+              <th class="muted-col">Обычный салон / мастера</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Замер помещения</strong></td>
+              <td class="highlight-col"><span class="check-icon">✓</span> Лазерное 3D-сканирование (точность ±1 мм)</td>
+              <td class="muted-col"><span class="cross-icon">✕</span> Рулетка, зазоры при монтаже</td>
+            </tr>
+            <tr>
+              <td><strong>Экология материалов</strong></td>
+              <td class="highlight-col"><span class="check-icon">✓</span> Плита Egger E0.5 — безвредна для детей</td>
+              <td class="muted-col"><span class="cross-icon">✕</span> Дешёвый ДСП E1 с запахом</td>
+            </tr>
+            <tr>
+              <td><strong>Надёжность фурнитуры</strong></td>
+              <td class="highlight-col"><span class="check-icon">✓</span> Blum (Австрия) — 200 000 циклов открывания</td>
+              <td class="muted-col"><span class="cross-icon">✕</span> Китайские петли, провисают через 1-2 года</td>
+            </tr>
+            <tr>
+              <td><strong>Фиксация цены</strong></td>
+              <td class="highlight-col"><span class="check-icon">✓</span> Прописано в договоре оферты — не меняется</td>
+              <td class="muted-col"><span class="cross-icon">✕</span> Скрытые доплаты за «дополнительные работы»</td>
+            </tr>
+            <tr>
+              <td><strong>Гарантия</strong></td>
+              <td class="highlight-col"><span class="check-icon">✓</span> 10 лет — официальный гарантийный талон</td>
+              <td class="muted-col"><span class="cross-icon">✕</span> 1 год, невозможно дозвониться</td>
+            </tr>
+            <tr>
+              <td><strong>Монтаж</strong></td>
+              <td class="highlight-col"><span class="check-icon">✓</span> Сертифицированные мастера, уборка за собой</td>
+              <td class="muted-col"><span class="cross-icon">✕</span> Субподрядчики, мусор остаётся</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- === OBJECTION BUSTER / GUARANTEES === -->
+  <section id="objections" class="section objections-section">
+    <div class="container">
+      <div class="section-header text-center reveal-up">
+        <div class="badge gold">🛡️ Полная юридическая защита</div>
+        <h2>Пять вопросов, которые останавливают<br>людей перед заказом кухни</h2>
+        <p class="section-desc">Отвечаем конкретно: пунктом договора, цифрой или гарантийным условием</p>
+      </div>
+
+      <div class="objections-grid grid-2 reveal-up">
+        <div class="objection-card">
+          <div class="objection-badge">Страх №1</div>
+          <h3>«Цена вырастет в ходе работ»</h3>
+          <div class="objection-answer">
+            <p><strong>Наша гарантия:</strong> Фиксация сметы в договоре оферты до 1 рубля. Цена не изменится ни при каких обстоятельствах (никаких скрытых доплат за вырезы или подъем).</p>
+            <span class="objection-doc">📋 Пункт 3.3 Договора оферты</span>
+          </div>
+        </div>
+
+        <div class="objection-card">
+          <div class="objection-badge">Страх №2</div>
+          <h3>«Сорвёте сроки ремонта»</h3>
+          <div class="objection-answer">
+            <p><strong>Наша гарантия:</strong> Изготовление строго от 21 до 45 дней. За каждый день задержки выплачиваем неустойку 0.1% от суммы заказа по договору.</p>
+            <span class="objection-doc">📋 Пункт 7.1 Договора оферты</span>
+          </div>
+        </div>
+
+        <div class="objection-card">
+          <div class="objection-badge">Страх №3</div>
+          <h3>«Не влезет газовая труба или кривые стены»</h3>
+          <div class="objection-answer">
+            <p><strong>Наша гарантия:</strong> Инженер делает 3D-лазерный замер с точностью до 1 мм. Если гарнитур не встанет идеально — переделаем модуль за наш счёт за 48 часов.</p>
+            <span class="objection-doc">📋 Сервис-протокол замера</span>
+          </div>
+        </div>
+
+        <div class="objection-card">
+          <div class="objection-badge">Страх №4</div>
+          <h3>«Фасады разбухнут или поцарапаются»</h3>
+          <div class="objection-answer">
+            <p><strong>Наш ответ:</strong> Фасады FENIX NTM не боятся пара, жира и царапин. Кромка запаяна термоклеем — не отходит от влаги. Тряпкой протёр, и как новая. Гарантия 10 лет подтверждает.</p>
+            <span class="objection-doc">🛡️ Гарантия 10 лет на материалы</span>
+          </div>
+        </div>
+
+        <div class="objection-card objection-card-full">
+          <div class="objection-badge gold">Страх №5</div>
+          <h3>«Вдруг заберут деньги и пропадут?»</h3>
+          <div class="objection-answer">
+            <p><strong>Наш ответ:</strong> Шоурум на Дербеневской, 11 — зайдите до заказа. Фабрика 2500 м² в Домодедово — покажем. Оплата 50% до производства, 50% перед монтажом. Рассрочка без банков и процентов.</p>
+            <span class="objection-doc">🤝 Доверие 840+ семей в Москве</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === CATALOG === -->
+  <section id="catalog" class="section catalog-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="badge">Коллекции 2026</div>
+        <h2>Авторский каталог кухонь</h2>
+        <p class="section-desc">Каждая модель адаптируется под ваши размеры, планировку и бюджет</p>
+      </div>
+      <div class="catalog-filters reveal-up">
+        <button class="filter-btn active" onclick="filterCatalog('all', this)">Все</button>
+        <button class="filter-btn" onclick="filterCatalog('modern', this)">Минимализм</button>
+        <button class="filter-btn" onclick="filterCatalog('neoclassic', this)">Неоклассика</button>
+        <button class="filter-btn" onclick="filterCatalog('loft', this)">Лофт & Дерево</button>
+      </div>
+      <div class="catalog-grid grid-3 reveal-up" id="catalogGrid">
+        <!-- EMPTY STATE -->
+        <div class="catalog-empty" id="catalogEmpty" aria-live="polite">
+          <div class="catalog-empty-icon">🔍</div>
+          <h3>Ничего не нашли</h3>
+          <p>По выбранному фильтру проектов нет. Попробуйте другой стиль.</p>
+        </div>
+        <div class="product-card tilt-card" data-category="modern">
+          <div class="product-img-wrap">
+            <span class="card-tag">Хит продаж</span>
+            <img src="images/kitchen_modern_dark.webp" alt="Кухня Nordic Minimal Gray" class="product-img img-skeleton" loading="lazy" onload="this.classList.remove('img-skeleton');this.classList.add('img-loaded')">
+            <div class="product-overlay"><button class="btn btn-secondary" onclick="openLegalModal('callback')">Хочу такую</button></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Nordic Minimal Gray</h3>
+            <p class="product-desc">Суперматовые фасады FENIX, встроенная рукоять Gola, столешница из кварцевого агломерата.</p>
+            <div class="product-specs"><span>Фурнитура: Blum (Австрия)</span><span>Материал: Эко-МДФ / Кварц</span></div>
+            <div class="product-bottom">
+              <div class="product-price"><span class="price-from">от</span> 48 000 ₽ <span class="price-unit">/ п.м.</span></div>
+              <button class="btn btn-outline-sm" onclick="openLegalModal('callback')">Рассчитать</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-card tilt-card featured-card" data-category="neoclassic">
+          <div class="featured-crown">⭐ Премиум</div>
+          <div class="product-img-wrap">
+            <span class="card-tag gold">Топ выбор</span>
+            <img src="images/kitchen_neoclassic_cream.webp" alt="Кухня Venezia Luxury" class="product-img" loading="lazy">
+            <div class="product-overlay"><button class="btn btn-glass" onclick="openLegalModal('callback')">Хочу такую</button></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Venezia Luxury Cream</h3>
+            <p class="product-desc">Утончённая фрезеровка фасадов, скрытые системы хранения, подсветка с датчиком движения.</p>
+            <div class="product-specs"><span>Фурнитура: Hettich / Blum</span><span>Материал: Эмаль матовая / МДФ</span></div>
+            <div class="product-bottom">
+              <div class="product-price"><span class="price-from">от</span> 54 000 ₽ <span class="price-unit">/ п.м.</span></div>
+              <button class="btn btn-outline-sm" onclick="openLegalModal('callback')">Рассчитать</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-card tilt-card" data-category="loft">
+          <div class="product-img-wrap">
+            <span class="card-tag">Тренд 2026</span>
+            <img src="images/kitchen_loft_wood.webp" alt="Кухня Urban Oak" class="product-img" loading="lazy">
+            <div class="product-overlay"><button class="btn btn-glass" onclick="openLegalModal('callback')">Хочу такую</button></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Urban Oak & Concrete</h3>
+            <p class="product-desc">Фактуры благородного дуба и тёмного бетона. Открытые витрины с тонированным стеклом.</p>
+            <div class="product-specs"><span>Фурнитура: Blum Legrabox</span><span>Материал: Шпон / HPL пластик</span></div>
+            <div class="product-bottom">
+              <div class="product-price"><span class="price-from">от</span> 45 000 ₽ <span class="price-unit">/ п.м.</span></div>
+              <button class="btn btn-outline-sm" onclick="openLegalModal('callback')">Рассчитать</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === PROCESS — TIMELINE === -->
+  <section id="process" class="section process-section">
+    <div class="container">
+      <div class="section-header text-center reveal-up">
+        <div class="badge">Как это работает</div>
+        <h2>От звонка до готовой кухни — 6 этапов.<br>Средний срок: 35 дней</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item reveal-left">
+          <div class="timeline-node"><span>01</span></div>
+          <div class="timeline-card">
+            <h3>Заявка или звонок</h3>
+            <p>Вы оставляете заявку. Мы перезваниваем за 5 минут, слушаем и уточняем пожелания.</p>
+            <div class="timeline-time">~ 5 минут</div>
+          </div>
+        </div>
+        <div class="timeline-item right reveal-right">
+          <div class="timeline-node"><span>02</span></div>
+          <div class="timeline-card">
+            <h3>Выезд дизайнера с образцами</h3>
+            <p>Привозим образцы фасадов, материалов и фурнитуры. Снимаем лазерные размеры.</p>
+            <div class="timeline-time">1-2 дня</div>
+          </div>
+        </div>
+        <div class="timeline-item reveal-left">
+          <div class="timeline-node"><span>03</span></div>
+          <div class="timeline-card">
+            <h3>3D-проект и смета</h3>
+            <p>Реалистичная 3D-визуализация с фото-рендером вашей кухни. Детальная смета без скрытых платежей.</p>
+            <div class="timeline-time">3-5 дней</div>
+          </div>
+        </div>
+        <div class="timeline-item right reveal-right">
+          <div class="timeline-node"><span>04</span></div>
+          <div class="timeline-card">
+            <h3>Производство на фабрике</h3>
+            <p>Изготовление на немецких станках Homag. Жёсткий контроль качества каждого элемента.</p>
+            <div class="timeline-time">21-45 дней</div>
+          </div>
+        </div>
+        <div class="timeline-item reveal-left">
+          <div class="timeline-node"><span>05</span></div>
+          <div class="timeline-card">
+            <h3>Чистая доставка и монтаж</h3>
+            <p>Спецупаковка для каждой детали. Мастера собирают за 1-2 дня и убирают строительный мусор.</p>
+            <div class="timeline-time">1-2 дня</div>
+          </div>
+        </div>
+        <div class="timeline-item right reveal-right">
+          <div class="timeline-node gold-node"><span>06</span></div>
+          <div class="timeline-card gold-card">
+            <h3>Сдача и 10 лет гарантии ✨</h3>
+            <p>Подписываем акт приёма, вручаем гарантийный талон и подарок от компании. Наслаждайтесь!</p>
+            <div class="timeline-time">День Х</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === QUIZ / LEAD CAPTURE === -->
+  <section id="quiz" class="section quiz-section">
+    <div class="container">
+      <div class="section-header text-center reveal-up">
+        <div class="badge gold">🎁 Онлайн-расчёт + Подарки</div>
+        <h2>Пройдите тест за 2 минуты<br>и получите 3D-проект + скидку 15%</h2>
+        <p class="section-desc">Узнайте точную стоимость вашей кухни. Подарок фиксируется при заказе до конца месяца.</p>
+      </div>
+      <div class="quiz-card reveal-up">
+        <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgress" style="width:25%"></div></div>
+        <div class="quiz-step-info">
+          <span>Шаг <strong id="stepNum">1</strong> из 4</span>
+          <span class="quiz-gift-badge">🎁 Скрытая LED-подсветка фасадов — в подарок</span>
+        </div>
+        <form id="quizForm" onsubmit="event.preventDefault();">
+          <!-- Step 1 -->
+          <div class="quiz-step active" data-step="1">
+            <h3 class="quiz-question">Выберите планировку вашей кухни:</h3>
+            <div class="quiz-options grid-4">
+              <label class="quiz-option-card"><input type="radio" name="layout" value="Прямая" checked>
+                <div class="option-content"><div class="option-icon">📐</div><div class="option-title">Прямая</div><p>Расположение в одну линию</p></div></label>
+              <label class="quiz-option-card"><input type="radio" name="layout" value="Угловая (Г-образная)">
+                <div class="option-content"><div class="option-icon">↩️</div><div class="option-title">Угловая (Г-образная)</div><p>Максимум пространства</p></div></label>
+              <label class="quiz-option-card"><input type="radio" name="layout" value="П-образная">
+                <div class="option-content"><div class="option-icon">⊏</div><div class="option-title">П-образная</div><p>Для просторных кухонь</p></div></label>
+              <label class="quiz-option-card"><input type="radio" name="layout" value="С островом">
+                <div class="option-content"><div class="option-icon">🏝️</div><div class="option-title">С островом / Баром</div><p>Премиум-стиль</p></div></label>
+            </div>
+          </div>
+          <!-- Step 2 -->
+          <div class="quiz-step" data-step="2">
+            <h3 class="quiz-question">Ориентировочная длина по стенам:</h3>
+            <div class="quiz-slider-box">
+              <div class="slider-val-display"><span id="lengthVal">3.5</span> <span class="slider-unit">метра</span></div>
+              <input type="range" min="1.5" max="8.0" step="0.1" value="3.5" class="custom-range" id="lengthRange" oninput="document.getElementById('lengthVal').innerText = parseFloat(this.value).toFixed(1)">
+              <div class="slider-marks"><span>1.5 м</span><span>4 м</span><span>8 м</span></div>
+            </div>
+            <div class="quiz-options grid-3 mt-4">
+              <label class="quiz-option-card"><input type="radio" name="height" value="До потолка" checked>
+                <div class="option-content"><div class="option-title">До потолка (антресоли)</div><p>Тренд 2026, без пыли</p></div></label>
+              <label class="quiz-option-card"><input type="radio" name="height" value="Стандартная высота">
+                <div class="option-content"><div class="option-title">Стандартная высота</div><p>Классическое решение</p></div></label>
+              <label class="quiz-option-card"><input type="radio" name="height" value="Нестандартное">
+                <div class="option-content"><div class="option-title">Нестандартное помещение</div><p>Мансарда, высокие потолки</p></div></label>
+            </div>
+          </div>
+          <!-- Step 3 -->
+          <div class="quiz-step" data-step="3">
+            <h3 class="quiz-question">Какой стиль вам ближе?</h3>
+            <div class="quiz-options grid-3">
+              <label class="quiz-option-card"><input type="radio" name="style" value="Минимализм" checked>
+                <div class="option-content"><div class="option-title">Modern & Minimal</div><p>Матовые фасады, встроенные ручки</p></div></label>
+              <label class="quiz-option-card"><input type="radio" name="style" value="Неоклассика">
+                <div class="option-content"><div class="option-title">Неоклассика</div><p>Фрезеровка, изящные детали</p></div></label>
+              <label class="quiz-option-card"><input type="radio" name="style" value="Лофт / Джапанди">
+                <div class="option-content"><div class="option-title">Лофт & Джапанди</div><p>Дерево, камень, металл</p></div></label>
+            </div>
+          </div>
+          <!-- Step 4: Lead Capture -->
+          <div class="quiz-step" data-step="4">
+            <div class="quiz-finish-box">
+              <div class="quiz-finish-icon">🎉</div>
+              <h3>Ваш расчёт готов! Скидка 15% зафиксирована</h3>
+              <p>Укажите, куда прислать смету, 3D-визуализацию и каталог подходящих фасадов:</p>
+              <div class="form-group-stack">
+                <input type="text" id="quizName" placeholder="Ваше имя" class="input-control">
+                <input type="tel" id="quizPhone" placeholder="+7 (___) ___-__-__" required class="input-control">
+                <div class="consent-line">
+                  <input type="checkbox" id="quizConsent" class="consent-cb">
+                  <label for="quizConsent">Я принимаю условия <button type="button" class="link-btn" onclick="openLegalModal('offer')">публичной оферты</button> и даю <button type="button" class="link-btn" onclick="openLegalModal('pd')">согласие на обработку персональных данных</button></label>
+                </div>
+                <button type="button" onclick="submitQuiz()" class="btn btn-primary btn-glow btn-full">Получить проект и смету бесплатно</button>
+              </div>
+              <p class="privacy-note">🔒 Гарантируем конфиденциальность. Никакого спама.</p>
+            </div>
+          </div>
+          <div class="quiz-nav mt-4" id="quizNav">
+            <button type="button" class="btn btn-outline" id="prevBtn" onclick="changeStep(-1)" style="display:none">← Назад</button>
+            <button type="button" class="btn btn-primary" id="nextBtn" onclick="changeStep(1)">Продолжить →</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- === REVIEWS === -->
+  <section id="reviews" class="section reviews-section">
+    <div class="container">
+      <div class="section-header text-center reveal-up">
+        <div class="badge">Живые отзывы клиентов</div>
+        <h2>840 кухонь сделано. Вот что говорят люди</h2>
+        <p class="section-desc">Имена, ЖК, детали — не придуманные отзывы</p>
+      </div>
+      <div class="reviews-grid grid-3 reveal-up">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Угловая до потолка, 5.8 п.м. Кухня 7 м², хрущёвка на Пресне. Дизайнер придумала скрытые ящики прямо под варочной — я бы не догадалась. Подсветка включается, когда открываешь дверцу. Прошёл год — всё работает.»</p>
+          <div class="review-author"><div class="author-avatar">ЕА</div><div><strong>Екатерина А.</strong><span>ЖК «Headliner», Пресня · апрель 2025</span></div></div>
+        </div>
+        <div class="review-card featured-review">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Два года назад брали Venezia Cream. Фасады FENIX — ни одного отпечатка, ни царапины. Blum открывается без звука. Рассрочку 0% оформили прямо в шоуруме — без банка, без справок. Сейчас смотрю на неё и понимаю: не зря.»</p>
+          <div class="review-author"><div class="author-avatar">МВ</div><div><strong>Михаил В.</strong><span>ЖК «Сити», Пресня · январь 2024</span></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Газовая труба прямо посередине стены. Другие фирмы сказали: «Ничего не сделаем». Инженер замерил, труба ушла внутрь короба, снаружи — ровный фасад. Ничего не торчит. Срок не сорвали.»</p>
+          <div class="review-author"><div class="author-avatar">ИС</div><div><strong>Ирина и Сергей</strong><span>Замоскворечье · март 2025</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === FINAL CTA === -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-banner reveal-up">
+        <div class="cta-bg-orb"></div>
+        <div class="cta-content">
+          <div class="badge gold">📐 Замер бесплатно · Только до конца месяца</div>
+          <h2>Запишитесь на замер сейчас —<br>дизайнер приедет с образцами</h2>
+          <p>Привезём фасады, материалы и фурнитуру Blum домой. Снимем лазерные размеры. Через 3–5 дней — готовый 3D-проект и смета без скрытых доплат.</p>
+          <p class="urgency-line">⚠️ Осталось <strong class="urgency-num">4</strong> свободных слота на этой неделе</p>
+          <form class="cta-form" onsubmit="event.preventDefault(); submitCTAForm(this);">
+            <input type="text" name="name" placeholder="Ваше имя" class="input-control">
+            <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required class="input-control">
+            <button type="submit" class="btn btn-primary btn-glow">Записаться на замер бесплатно →</button>
+          </form>
+          <div class="consent-line light mt-2">
+            <input type="checkbox" id="ctaConsent" class="consent-cb" checked>
+            <label for="ctaConsent">Нажимая кнопку, вы принимаете <button type="button" class="link-btn light" onclick="openLegalModal('offer')">договор оферты</button> и <button type="button" class="link-btn light" onclick="openLegalModal('pd')">политику конфиденциальности</button></label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === FOOTER === -->
+  <footer id="contacts" class="footer">
+    <div class="footer-inner">
+      <div class="container footer-top-grid">
+        <div class="footer-col brand-col">
+          <a href="#hero" class="logo-img-wrap mb-3" aria-label="Главное-Кухня — на главную">
+            <img src="images/logo.svg" alt="Главное-Кухня логотип" class="logo-img">
+          </a>
+          <p class="footer-text">Производство и проектирование авторских кухонь по индивидуальным размерам в Москве. Полный цикл — от дизайна до монтажа.</p>
+          <div class="social-links mt-3">
+            <a href="https://wa.me/74951234567" class="social-btn whatsapp" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              WhatsApp
+            </a>
+            <a href="https://t.me/glavnoe_kuhnya" class="social-btn telegram" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+              Telegram
+            </a>
+            <a href="https://vk.com" class="social-btn vk" target="_blank" rel="noopener">ВКонтакте</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Навигация</h4>
+          <ul class="footer-links">
+            <li><a href="#gallery3d">3D-Галерея кухонь</a></li>
+            <li><a href="#catalog">Каталог 2026</a></li>
+            <li><a href="#advantages">Преимущества</a></li>
+            <li><a href="#process">Этапы создания</a></li>
+            <li><a href="#quiz">Онлайн-расчёт</a></li>
+            <li><a href="#reviews">Отзывы клиентов</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Контакты</h4>
+          <div class="footer-contacts-list">
+            <div class="fc-item"><span class="fc-icon">📍</span><div><strong>Шоурум Москва</strong><span>ул. Дербеневская, д. 11, стр. 2</span></div></div>
+            <div class="fc-item"><span class="fc-icon">📍</span><div><strong>Производство</strong><span>МО, г. Домодедово, Логистическая ул., 1</span></div></div>
+            <div class="fc-item"><span class="fc-icon">📞</span><div><strong>Телефон</strong><a href="tel:+74951234567">+7 (495) 123-45-67</a></div></div>
+            <div class="fc-item"><span class="fc-icon">✉️</span><div><strong>Email</strong><a href="mailto:info@glavnoe-kuhnya.ru">info@glavnoe-kuhnya.ru</a></div></div>
+            <div class="fc-item"><span class="fc-icon">🕒</span><div><strong>Режим работы</strong><span>Ежедневно 10:00 – 20:00</span></div></div>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Реквизиты</h4>
+          <p class="footer-text small-text">ООО «Главное-Кухня»<br>ИНН: 7722123456<br>ОГРН: 1217700123456<br>Юр. адрес: 115114, Москва,<br>ул. Дербеневская, д. 11, стр. 2</p>
+        </div>
+      </div>
+
+      <!-- Legal Links -->
+      <div class="footer-legal">
+        <div class="container">
+          <div class="footer-legal-inner">
+            <span class="copyright">© 2026 ООО «Главное-Кухня». Все права защищены.</span>
+            <div class="legal-links">
+              <button type="button" class="legal-link-btn" onclick="openLegalModal('offer')">Договор публичной оферты</button>
+              <button type="button" class="legal-link-btn" onclick="openLegalModal('pd')">Политика конфиденциальности</button>
+              <button type="button" class="legal-link-btn" onclick="openLegalModal('consent')">Согласие на обработку ПД</button>
+              <button type="button" class="legal-link-btn" onclick="openLegalModal('return')">Условия возврата</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- === LEGAL MODALS === -->
+
+  <!-- Callback Modal -->
+  <div id="modal-callback" class="modal-overlay legal-modal" onclick="closeLegalModal(event, 'callback')">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeLegalModalDirect('callback')">&times;</button>
+      <div class="modal-header-block">
+        <div class="modal-icon">📞</div>
+        <h3>Заказать бесплатный звонок</h3>
+        <p>Наш дизайнер перезвонит в течение 5 минут и проконсультирует по всем вопросам</p>
+      </div>
+      <form class="modal-form" onsubmit="event.preventDefault(); submitModalForm('callback');">
+        <input type="text" id="cbName" placeholder="Ваше имя" class="input-control">
+        <input type="tel" id="cbPhone" placeholder="+7 (___) ___-__-__" required class="input-control">
+        <div class="consent-line mt-2">
+          <input type="checkbox" id="cbConsent" class="consent-cb" required>
+          <label for="cbConsent">Согласен(-на) с <button type="button" class="link-btn" onclick="switchModal('callback','offer')">договором оферты</button> и <button type="button" class="link-btn" onclick="switchModal('callback','pd')">политикой конфиденциальности</button></label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-glow btn-full mt-2">Перезвоните мне</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Offer Modal -->
+  <div id="modal-offer" class="modal-overlay legal-modal" onclick="closeLegalModal(event, 'offer')">
+    <div class="modal-card legal-doc-card">
+      <button class="modal-close" onclick="closeLegalModalDirect('offer')">&times;</button>
+      <div class="legal-doc-scroll">
+        <h2 class="legal-doc-title">Договор публичной оферты</h2>
+        <div class="legal-doc-meta">ООО «Главное-Кухня» | Редакция от 01.01.2026 | ИНН 7722123456</div>
+        <div class="legal-doc-body">
+          <h4>1. Общие положения</h4>
+          <p>1.1. Настоящий документ является публичной офертой ООО «Главное-Кухня» (далее — «Исполнитель»), ИНН 7722123456, ОГРН 1217700123456, адрес: 115114, г. Москва, ул. Дербеневская, д. 11, стр. 2, и содержит все существенные условия договора на изготовление и монтаж корпусной мебели.</p>
+          <p>1.2. Акцептом настоящей оферты является совершение Заказчиком следующих действий: заполнение заявки на сайте с проставлением отметки о согласии с условиями оферты, внесение предоплаты (аванса) либо подписание Технического задания.</p>
+          <p>1.3. С момента акцепта оферты договор считается заключённым в соответствии со ст. 435 и 438 Гражданского кодекса Российской Федерации.</p>
+
+          <h4>2. Предмет договора</h4>
+          <p>2.1. Исполнитель обязуется по заданию Заказчика изготовить корпусную мебель (кухонный гарнитур) по индивидуальным размерам и произвести её монтаж по адресу, указанному Заказчиком.</p>
+          <p>2.2. Комплектность, размеры, материалы, цвет, фурнитура и иные характеристики товара определяются Техническим заданием, которое является неотъемлемой частью настоящего договора.</p>
+
+          <h4>3. Цена и порядок оплаты</h4>
+          <p>3.1. Цена договора определяется на основании согласованного Технического задания и указывается в счёте на оплату.</p>
+          <p>3.2. Порядок оплаты: аванс 50% при подписании Технического задания; оставшиеся 50% — по факту доставки мебели на объект Заказчика до начала монтажа.</p>
+          <p>3.3. Цена договора фиксируется в момент его заключения и не подлежит одностороннему изменению Исполнителем.</p>
+
+          <h4>4. Сроки изготовления и доставки</h4>
+          <p>4.1. Срок изготовления составляет от 21 до 45 рабочих дней с даты получения аванса и подписания Технического задания.</p>
+          <p>4.2. Исполнитель уведомляет Заказчика о готовности изделия к доставке не позднее чем за 3 рабочих дня.</p>
+          <p>4.3. Доставка осуществляется по адресу Заказчика в г. Москве и Московской области. Стоимость доставки включена в стоимость заказа при заказе от 150 000 ₽.</p>
+
+          <h4>5. Гарантийные обязательства</h4>
+          <p>5.1. Гарантийный срок на изготовленную мебель составляет 10 (десять) лет с даты подписания Акта приёма-передачи.</p>
+          <p>5.2. Гарантия распространяется на: корпус изделия, фасады, механизмы Blum, столешницу (при соблюдении условий эксплуатации).</p>
+          <p>5.3. Гарантия не распространяется на повреждения, возникшие в результате: несоблюдения правил эксплуатации, механических воздействий, воздействия воды сверх установленных норм.</p>
+
+          <h4>6. Права и обязанности сторон</h4>
+          <p>6.1. Исполнитель обязан: изготовить мебель в соответствии с Техническим заданием; уведомить Заказчика о готовности; произвести монтаж; предоставить гарантийный талон.</p>
+          <p>6.2. Заказчик обязан: своевременно вносить платежи; обеспечить доступ к помещению в согласованное время; принять работу и подписать Акт приёма-передачи.</p>
+
+          <h4>7. Ответственность сторон</h4>
+          <p>7.1. За нарушение срока изготовления по вине Исполнителя Заказчик вправе требовать неустойку в размере 0,1% от суммы заказа за каждый день просрочки, но не более 10% от общей стоимости.</p>
+          <p>7.2. Стороны освобождаются от ответственности при наступлении обстоятельств непреодолимой силы.</p>
+
+          <h4>8. Порядок разрешения споров</h4>
+          <p>8.1. Споры разрешаются путём переговоров. При невозможности достижения согласия — в суде по месту нахождения Исполнителя: Замоскворецкий районный суд г. Москвы, либо в Арбитражном суде г. Москвы (для субъектов предпринимательской деятельности).</p>
+
+          <h4>9. Реквизиты Исполнителя</h4>
+          <p>ООО «Главное-Кухня»<br>ИНН: 7722123456 | КПП: 772201001<br>ОГРН: 1217700123456<br>Р/с: 40702810000000000001 в ПАО Сбербанк<br>БИК: 044525225 | К/с: 30101810400000000225<br>Адрес: 115114, г. Москва, ул. Дербеневская, д. 11, стр. 2<br>Тел.: +7 (495) 123-45-67 | Email: info@glavnoe-kuhnya.ru</p>
+        </div>
+      </div>
+      <div class="legal-modal-footer">
+        <button class="btn btn-outline" onclick="closeLegalModalDirect('offer')">Закрыть</button>
+        <button class="btn btn-primary" onclick="closeLegalModalDirect('offer')">Принять оферту</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Privacy Policy Modal -->
+  <div id="modal-pd" class="modal-overlay legal-modal" onclick="closeLegalModal(event, 'pd')">
+    <div class="modal-card legal-doc-card">
+      <button class="modal-close" onclick="closeLegalModalDirect('pd')">&times;</button>
+      <div class="legal-doc-scroll">
+        <h2 class="legal-doc-title">Политика конфиденциальности и обработки персональных данных</h2>
+        <div class="legal-doc-meta">ООО «Главное-Кухня» | Версия 2.0 от 01.01.2026</div>
+        <div class="legal-doc-body">
+          <p>Настоящая Политика конфиденциальности (далее — «Политика») разработана в соответствии с Федеральным законом № 152-ФЗ от 27.07.2006 «О персональных данных» и регулирует порядок обработки персональных данных пользователей сайта <strong>glavnoe-kuhnya.ru</strong>.</p>
+
+          <h4>1. Оператор персональных данных</h4>
+          <p>Оператором является ООО «Главное-Кухня», ИНН 7722123456, ОГРН 1217700123456, адрес: 115114, г. Москва, ул. Дербеневская, д. 11, стр. 2, email: info@glavnoe-kuhnya.ru.</p>
+
+          <h4>2. Какие данные мы собираем</h4>
+          <p>При взаимодействии с сайтом мы можем собирать следующие данные: фамилию, имя, отчество; номер телефона; адрес электронной почты; адрес доставки/монтажа; данные о запрашиваемых товарах и услугах; технические данные: IP-адрес, тип браузера, cookie-файлы.</p>
+
+          <h4>3. Цели обработки персональных данных</h4>
+          <p>Мы обрабатываем ваши данные в следующих целях:</p>
+          <ul>
+            <li>Связь с вами по вашему запросу (обратный звонок, консультация);</li>
+            <li>Заключение и исполнение договора на изготовление мебели;</li>
+            <li>Направление информации о статусе заказа;</li>
+            <li>Маркетинговые коммуникации (только при наличии вашего явного согласия);</li>
+            <li>Исполнение требований законодательства РФ.</li>
+          </ul>
+
+          <h4>4. Правовые основания обработки</h4>
+          <p>4.1. Ваше согласие (ст. 6, ч. 1, п. 1 ФЗ-152);<br>4.2. Исполнение договора (ст. 6, ч. 1, п. 5 ФЗ-152);<br>4.3. Исполнение требований законодательства (ст. 6, ч. 1, п. 2 ФЗ-152).</p>
+
+          <h4>5. Передача данных третьим лицам</h4>
+          <p>Мы не продаём и не передаём ваши персональные данные третьим лицам без вашего согласия, за исключением: органов государственной власти по их законным запросам; подрядчиков (логистика, CRM) на основании соглашений о конфиденциальности.</p>
+
+          <h4>6. Хранение данных</h4>
+          <p>Данные хранятся на защищённых серверах, расположенных на территории Российской Федерации, в течение срока, необходимого для достижения целей обработки, но не менее 5 лет с даты исполнения договора.</p>
+
+          <h4>7. Права субъекта персональных данных</h4>
+          <p>Вы имеете право: получить информацию об обрабатываемых данных; потребовать исправления неточных данных; потребовать удаления данных («право на забвение»); отозвать согласие на обработку; обратиться с жалобой в Роскомнадзор (rkn.gov.ru).</p>
+
+          <h4>8. Использование cookie</h4>
+          <p>Сайт использует cookie-файлы для аналитики (Яндекс.Метрика) и обеспечения функциональности. Вы можете отключить cookie в настройках браузера, однако это может повлиять на работу сайта.</p>
+
+          <h4>9. Контакты для обращений по ПД</h4>
+          <p>По всем вопросам обработки персональных данных: email@главное-кухня.рф или info@glavnoe-kuhnya.ru, тел. +7 (495) 123-45-67.</p>
+        </div>
+      </div>
+      <div class="legal-modal-footer">
+        <button class="btn btn-outline" onclick="closeLegalModalDirect('pd')">Закрыть</button>
+        <button class="btn btn-primary" onclick="closeLegalModalDirect('pd')">Ознакомлен(-а)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Personal Data Consent Modal -->
+  <div id="modal-consent" class="modal-overlay legal-modal" onclick="closeLegalModal(event, 'consent')">
+    <div class="modal-card legal-doc-card">
+      <button class="modal-close" onclick="closeLegalModalDirect('consent')">&times;</button>
+      <div class="legal-doc-scroll">
+        <h2 class="legal-doc-title">Согласие на обработку персональных данных</h2>
+        <div class="legal-doc-meta">В соответствии с ФЗ №152-ФЗ «О персональных данных»</div>
+        <div class="legal-doc-body">
+          <p>Настоящим я, субъект персональных данных (далее — «Субъект»), в соответствии с требованиями Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных», свободно, своей волей и в своём интересе предоставляю согласие на обработку моих персональных данных Оператору — ООО «Главное-Кухня», ИНН 7722123456, ОГРН 1217700123456, расположенному по адресу: 115114, г. Москва, ул. Дербеневская, д. 11, стр. 2 (далее — «Оператор»).</p>
+
+          <h4>Перечень персональных данных</h4>
+          <p>Фамилия, имя, отчество; номер телефона; адрес электронной почты; адрес доставки; данные о заказе (наименование, стоимость, сроки).</p>
+
+          <h4>Цели обработки</h4>
+          <p>— Обработка обращений (звонок, заявка);<br>— Заключение и исполнение договора на изготовление мебели;<br>— Информирование о статусе заказа;<br>— Направление коммерческих предложений (при согласии на маркетинг).</p>
+
+          <h4>Действия с персональными данными</h4>
+          <p>Сбор, запись, систематизация, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, передача (предоставление, доступ), обезличивание, блокирование, удаление, уничтожение.</p>
+
+          <h4>Срок действия согласия</h4>
+          <p>Согласие действует с момента его предоставления и до истечения 5 (пяти) лет с даты исполнения обязательств по договору, либо до его отзыва Субъектом.</p>
+
+          <h4>Отзыв согласия</h4>
+          <p>Субъект вправе в любое время отозвать настоящее согласие, направив письменное заявление по адресу: 115114, г. Москва, ул. Дербеневская, д. 11, стр. 2, или по электронной почте: info@glavnoe-kuhnya.ru.</p>
+        </div>
+      </div>
+      <div class="legal-modal-footer">
+        <button class="btn btn-outline" onclick="closeLegalModalDirect('consent')">Закрыть</button>
+        <button class="btn btn-primary" onclick="closeLegalModalDirect('consent')">Даю согласие</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Return Policy Modal -->
+  <div id="modal-return" class="modal-overlay legal-modal" onclick="closeLegalModal(event, 'return')">
+    <div class="modal-card legal-doc-card">
+      <button class="modal-close" onclick="closeLegalModalDirect('return')">&times;</button>
+      <div class="legal-doc-scroll">
+        <h2 class="legal-doc-title">Условия возврата и отмены заказа</h2>
+        <div class="legal-doc-meta">В соответствии с ФЗ «О защите прав потребителей» № 2300-1</div>
+        <div class="legal-doc-body">
+          <p>Настоящие условия регулируют порядок отмены заказа и возврата денежных средств при покупке продукции, изготовленной на заказ, в ООО «Главное-Кухня».</p>
+
+          <h4>1. Товары, изготовленные по индивидуальным размерам</h4>
+          <p>В соответствии с Постановлением Правительства РФ от 31.12.2020 № 2463 (Перечень непродовольственных товаров надлежащего качества), мебель, изготовленная по индивидуальным заказам Покупателя, <strong>не подлежит обмену и возврату</strong>.</p>
+
+          <h4>2. Отмена заказа до начала производства</h4>
+          <p>2.1. Если заказ отменяется в течение 24 часов с момента внесения аванса — аванс возвращается в полном объёме.<br>2.2. Если заказ отменяется после подписания Технического задания, но до начала производства (в течение 3 рабочих дней) — возвращается 70% от внесённого аванса.<br>2.3. После начала производства аванс не возвращается, поскольку материалы закупаются под конкретный заказ.</p>
+
+          <h4>3. Возврат при наличии производственных дефектов</h4>
+          <p>3.1. При обнаружении дефектов производственного характера в течение гарантийного срока (10 лет) Исполнитель обязан за свой счёт устранить дефекты или заменить дефектный элемент.<br>3.2. Срок устранения дефектов — не более 30 рабочих дней с даты обращения.<br>3.3. Если дефект устранить невозможно — Заказчик вправе требовать соразмерного уменьшения цены или полного возврата уплаченных средств.</p>
+
+          <h4>4. Порядок обращения</h4>
+          <p>Претензии направляются: по электронной почте info@glavnoe-kuhnya.ru, по телефону +7 (495) 123-45-67, или по адресу: г. Москва, ул. Дербеневская, д. 11, стр. 2. Срок рассмотрения претензии — 10 рабочих дней.</p>
+
+          <h4>5. Применимое право</h4>
+          <p>К настоящим условиям применяется законодательство Российской Федерации, в частности: ФЗ «О защите прав потребителей» от 07.02.1992 № 2300-1, Гражданский кодекс РФ (гл. 37 «Подряд»).</p>
+        </div>
+      </div>
+      <div class="legal-modal-footer">
+        <button class="btn btn-outline" onclick="closeLegalModalDirect('return')">Закрыть</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- === STICKY MOBILE CTA BAR === -->
+  <div class="mobile-sticky-bar" id="mobileStickyBar">
+    <div class="sticky-info">
+      <span class="sticky-title">3D-проект + Расчёт 15%</span>
+      <span class="sticky-sub">Бесплатно · 2 мин</span>
+    </div>
+    <button class="btn btn-primary btn-sm btn-glow" onclick="scrollToElement('quiz')">
+      Рассчитать →
+    </button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

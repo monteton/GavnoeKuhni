@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 180" width="500" height="180">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&amp;display=swap');
+      .logo-icon-stroke {
+        fill: none;
+        stroke: #1a1712;
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .logo-accent-stroke {
+        fill: none;
+        stroke: #b49030;
+        stroke-width: 2;
+        stroke-linecap: round;
+      }
+      .logo-text {
+        font-family: 'Cormorant Garamond', Georgia, serif;
+        font-size: 46px;
+        font-weight: 700;
+        fill: #1a1712;
+        letter-spacing: 1px;
+      }
+      .logo-dot {
+        fill: #b49030;
+      }
+    </style>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b49030" />
+      <stop offset="50%" stop-color="#e0c86a" />
+      <stop offset="100%" stop-color="#8a6c18" />
+    </linearGradient>
+  </defs>
+
+  <!-- ARCH KITCHEN ICON -->
+  <g transform="translate(250, 48)">
+    <!-- Outer Arch -->
+    <path d="M-28,24 V-8 A28,28 0 0,1 28,-8 V24 Z" class="logo-icon-stroke" />
+    <!-- Arch inner line -->
+    <path d="M-22,24 V-7 A22,22 0 0,1 22,-7 V24" class="logo-accent-stroke" opacity="0.6" />
+    <!-- Kitchen Hood / Range Silhouette -->
+    <path d="M-12,8 L-6,0 H6 L12,8 Z" fill="#1a1712" />
+    <path d="M-2,0 V-12 H2 V0" fill="#1a1712" />
+    <!-- Counterline -->
+    <line x1="-20" y1="16" x2="20" y2="16" class="logo-icon-stroke" stroke-width="2" />
+    <line x1="-14" y1="24" x2="14" y2="24" stroke="url(#goldGrad)" stroke-width="2" stroke-linecap="round" />
+  </g>
+
+  <!-- BRAND NAME TEXT -->
+  <g transform="translate(250, 142)">
+    <text text-anchor="middle" class="logo-text">
+      <tspan>Главное</tspan><tspan class="logo-dot"> · </tspan><tspan>Кухня</tspan>
+    </text>
+  </g>
+</svg>
