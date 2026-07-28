@@ -136,6 +136,14 @@
   padding: 0;
 }
 
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+  position: relative;
+}
+
 html {
   scroll-behavior: smooth;
   font-size: 16px;
@@ -153,7 +161,6 @@ body {
   background-image: var(--marble);
   background-size: 900px 900px;
   background-attachment: fixed;
-  overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -2838,8 +2845,28 @@ button:focus-visible {
 @media (max-width: 768px) {
 
   /* ─ Base ─ */
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+  }
+
   html {
     font-size: 15px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 var(--sp-2);
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .section, .section-compact, .section-wide {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   /* ─ Header ─ */
@@ -2850,6 +2877,8 @@ button:focus-visible {
   .header-container {
     padding: var(--sp-1) var(--sp-2);
     min-height: 60px;
+    width: 100%;
+    max-width: 100%;
   }
 
   .logo-img {
