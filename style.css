@@ -1461,6 +1461,71 @@ button:focus-visible {
   margin-right: 6px;
 }
 
+/* Mobile comparison cards — hidden on desktop */
+.comparison-mobile-cards {
+  display: none;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.comp-mobile-card {
+  background: var(--glass-strong);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-gold-hi);
+  border-radius: var(--r-panel);
+  padding: var(--sp-3);
+  box-shadow: var(--shadow-md);
+}
+
+.comp-mobile-title {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  color: var(--text);
+  margin-bottom: var(--sp-2);
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-gold);
+}
+
+.comp-mobile-row {
+  padding: var(--sp-2);
+  border-radius: var(--r-component);
+  margin-bottom: var(--sp-1);
+}
+
+.comp-mobile-row.us {
+  background: rgba(180, 144, 48, 0.08);
+  border: 1px solid var(--border-gold-hi);
+}
+
+.comp-mobile-row.them {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px dashed var(--border-md);
+}
+
+.comp-mobile-tag {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.comp-mobile-tag.us-tag {
+  color: var(--gold-dk);
+}
+
+.comp-mobile-tag.them-tag {
+  color: var(--text-muted);
+}
+
+.comp-mobile-text {
+  font-size: var(--text-sm);
+  color: var(--text-2);
+  line-height: var(--lh-snug);
+}
+
 /* ═══════════════════════════════════════════════════════════════════
    CATALOG
    ═══════════════════════════════════════════════════════════════════ */
@@ -2823,48 +2888,44 @@ button:focus-visible {
     font-size: var(--text-base);
   }
 
-  /* ─ Hero — align-items:flex-end чтобы контент был внизу на мобиле */
+  /* Hero — align-items: center for mobile */
   .hero {
-    padding: 72px var(--sp-2) var(--sp-8);
+    padding: 90px var(--sp-2) var(--sp-6);
     min-height: 100svh;
-    /* svh корректен на iOS Safari */
-    align-items: flex-end;
-    padding-bottom: calc(var(--sp-8) + env(safe-area-inset-bottom));
+    align-items: center;
+    justify-content: center;
+    padding-bottom: calc(var(--sp-6) + env(safe-area-inset-bottom));
   }
 
   .hero-overlay {
     background: linear-gradient(180deg,
-        rgba(248, 246, 242, 0.20) 0%,
-        rgba(248, 246, 242, 0.55) 45%,
+        rgba(248, 246, 242, 0.35) 0%,
+        rgba(248, 246, 242, 0.75) 50%,
         rgba(248, 246, 242, 0.98) 100%);
   }
 
-  /* Hero logo — спрятать за nav-шапкой, уменьшить */
+  /* Hide duplicate floating logo showcase on mobile — logo is already in top sticky header */
   .hero-logo-showcase {
-    padding: var(--sp-2) var(--sp-3);
-    top: 68px;
-  }
-
-  .hero-logo-img {
-    height: 64px;
+    display: none !important;
   }
 
   .hero-content {
     max-width: 100%;
-    padding-bottom: var(--sp-4);
-    text-align: left;
+    padding-bottom: var(--sp-2);
+    text-align: center;
   }
 
   .hero-badge {
-    margin-bottom: var(--sp-2);
-    font-size: 0.7rem;
+    margin-bottom: var(--sp-3);
+    font-size: 0.72rem;
+    display: inline-flex;
   }
 
   .hero-title {
-    font-size: clamp(1.75rem, 7.5vw, 2.5rem);
-    line-height: 1.12;
-    margin-bottom: var(--sp-2);
-    text-align: left;
+    font-size: clamp(1.65rem, 7vw, 2.3rem);
+    line-height: 1.2;
+    margin-bottom: var(--sp-3);
+    text-align: center;
   }
 
   .hero-title br {
@@ -2873,9 +2934,9 @@ button:focus-visible {
 
   .hero-subtitle {
     font-size: var(--text-sm);
-    margin-bottom: var(--sp-3);
+    margin-bottom: var(--sp-4);
     max-width: 100%;
-    text-align: left;
+    text-align: center;
   }
 
   .hero-subtitle br {
@@ -2984,20 +3045,13 @@ button:focus-visible {
     display: none;
   }
 
-  /* ─ Сравнительная таблица — горизонтальный скролл ─ */
-  .adv-comparison {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+  /* ─ Сравнительная секция на мобильном — переключение с таблицы на карточки ─ */
+  .adv-comparison .comparison-table {
+    display: none !important;
   }
 
-  .comparison-table {
-    min-width: 480px;
-  }
-
-  .comparison-table th,
-  .comparison-table td {
-    padding: 10px var(--sp-2);
-    font-size: var(--text-sm);
+  .adv-comparison .comparison-mobile-cards {
+    display: flex !important;
   }
 
   /* ─ Objection cards ─ */
@@ -3267,18 +3321,9 @@ button:focus-visible {
     padding: var(--sp-1) var(--sp-2);
   }
 
-  /* Hero — сдвигаем вниз из-за уменьшенного logo */
+  /* Hero */
   .hero {
-    padding: 68px var(--sp-2) var(--sp-6);
-  }
-
-  .hero-logo-showcase {
-    top: 58px;
-    padding: var(--sp-1) var(--sp-3);
-  }
-
-  .hero-logo-img {
-    height: 52px;
+    padding: 80px var(--sp-2) var(--sp-6);
   }
 
   .hero-title {
@@ -3426,14 +3471,6 @@ button:focus-visible {
 
   .grid-4 {
     grid-template-columns: 1fr 1fr;
-  }
-
-  .hero-logo-img {
-    height: 44px;
-  }
-
-  .hero-logo-showcase {
-    top: 56px;
   }
 }
 
