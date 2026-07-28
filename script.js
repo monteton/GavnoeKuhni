@@ -9,9 +9,12 @@
 // ──────────────────────────────────────────────────────
 // 1. AMBIENT CURSOR GLOW (системный курсор НЕ скрываем)
 // ──────────────────────────────────────────────────────
+// ──────────────────────────────────────────────────────
+// 1. AMBIENT CURSOR GLOW (системный курсор НЕ скрываем)
+// ──────────────────────────────────────────────────────
 (function initCursorGlow() {
   const glow = document.getElementById('cursorGlow');
-  if (!glow || window.matchMedia('(hover: none)').matches) return;
+  if (!glow || window.matchMedia('(hover: none)').matches || window.matchMedia('(max-width: 768px)').matches) return;
 
   let mx = -999, my = -999;
   let cx = -999, cy = -999;
@@ -63,11 +66,11 @@
 })();
 
 // ──────────────────────────────────────────────────────
-// 2. PARTICLE CANVAS
+// 2. PARTICLE CANVAS (Отключен на мобильных для 60 FPS)
 // ──────────────────────────────────────────────────────
 (function initParticles() {
   const canvas = document.getElementById('particleCanvas');
-  if (!canvas) return;
+  if (!canvas || window.matchMedia('(max-width: 768px)').matches || window.matchMedia('(hover: none)').matches) return;
   const ctx = canvas.getContext('2d');
   let W, H, particles = [];
 
@@ -76,7 +79,7 @@
     H = canvas.height = window.innerHeight;
   }
   resize();
-  window.addEventListener('resize', resize);
+  window.addEventListener('resize', resize, { passive: true });
 
   class Particle {
     constructor() { this.reset(); }
@@ -104,8 +107,7 @@
     }
     draw() {
       ctx.save();
-      ctx.globalAlpha = this.alpha * 0.45; // нежнее на светлом фоне
-      // золотые и тёплые амберные частицы мраморной пыли
+      ctx.globalAlpha = this.alpha * 0.45;
       const palette = ['#b8942a', '#c9a036', '#d4af37', '#c85e00', '#a0845a'];
       ctx.fillStyle = palette[Math.floor(Math.random() * palette.length)];
       ctx.beginPath();
@@ -126,12 +128,12 @@
 })();
 
 // ──────────────────────────────────────────────────────
-// 3. PARALLAX HERO ON SCROLL
+// 3. PARALLAX HERO ON SCROLL (Только десктоп)
 // ──────────────────────────────────────────────────────
 (function initParallax() {
   const heroBg = document.getElementById('heroBg');
   const heroContent = document.getElementById('heroContent');
-  if (!heroBg) return;
+  if (!heroBg || window.matchMedia('(max-width: 768px)').matches) return;
 
   function onScroll() {
     const scrollY = window.scrollY;
@@ -171,7 +173,7 @@
 })();
 
 // ──────────────────────────────────────────────────────
-// 5. SCROLL REVEAL — INTERSECTION OBSERVER
+// 5. SCROLL REVEAL — HIGH PERFORMANCE INTERSECTION OBSERVER
 // ──────────────────────────────────────────────────────
 (function initReveal() {
   const els = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
@@ -195,11 +197,12 @@
       });
     }, { threshold: 0.05, rootMargin: '50px 0px 50px 0px' });
     els.forEach(el => obs.observe(el));
+  } else {
+    window.addEventListener('scroll', checkVisible, { passive: true });
   }
   
-  // Instant check on init & scroll
+  // Instant check on init
   checkVisible();
-  window.addEventListener('scroll', checkVisible, { passive: true });
 })();
 
 // ──────────────────────────────────────────────────────
