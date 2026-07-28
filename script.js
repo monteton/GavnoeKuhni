@@ -175,15 +175,31 @@
 // ──────────────────────────────────────────────────────
 (function initReveal() {
   const els = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        obs.unobserve(entry.target);
+  
+  function checkVisible() {
+    els.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.95 && rect.bottom > 0) {
+        el.classList.add('visible');
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
-  els.forEach(el => obs.observe(el));
+  }
+
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '50px 0px 50px 0px' });
+    els.forEach(el => obs.observe(el));
+  }
+  
+  // Instant check on init & scroll
+  checkVisible();
+  window.addEventListener('scroll', checkVisible, { passive: true });
 })();
 
 // ──────────────────────────────────────────────────────
@@ -305,16 +321,26 @@
 // ──────────────────────────────────────────────────────
 // 9. MOBILE MENU
 // ──────────────────────────────────────────────────────
-window.toggleMobileMenu = function() {
+window.toggleMobileMenu = function(forceClose) {
   const nav = document.getElementById('mobileNav');
   const btn = document.getElementById('burgerBtn');
   if (!nav) return;
-  const isOpen = nav.classList.toggle('open');
-  btn.classList.toggle('open', isOpen);
+  const shouldOpen = forceClose === false ? false : !nav.classList.contains('open');
+  nav.classList.toggle('open', shouldOpen);
+  if (btn) btn.classList.toggle('open', shouldOpen);
 };
 
+// Close mobile menu on click outside header
+document.addEventListener('click', e => {
+  const header = document.getElementById('mainHeader');
+  const nav = document.getElementById('mobileNav');
+  if (nav && nav.classList.contains('open') && header && !header.contains(e.target)) {
+    window.toggleMobileMenu(false);
+  }
+});
+
 // ──────────────────────────────────────────────────────
-// 10. QUIZ LOGIC
+// 10. QUIZ LOGIC + TOUCH SWIPE
 // ──────────────────────────────────────────────────────
 let quizStep = 1;
 const TOTAL_STEPS = 4;
@@ -335,6 +361,29 @@ window.changeStep = function(delta) {
   if (prevBtn)  prevBtn.style.display = quizStep === 1 ? 'none' : 'inline-flex';
   if (nextBtn)  nextBtn.style.display = quizStep === TOTAL_STEPS ? 'none' : 'inline-flex';
 };
+
+// Quiz touch swipe support for mobile
+(function initQuizSwipe() {
+  const quizCard = document.querySelector('.quiz-card');
+  if (!quizCard) return;
+  let startX = 0, startY = 0;
+  quizCard.addEventListener('touchstart', e => {
+    // Avoid interfering with range slider
+    if (e.target.type === 'range') return;
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+  quizCard.addEventListener('touchend', e => {
+    if (e.target.type === 'range') return;
+    const dx = e.changedTouches[0].clientX - startX;
+    const dy = e.changedTouches[0].clientY - startY;
+    // Horizontal swipe threshold 60px, vertical tolerance 40px
+    if (Math.abs(dx) > 60 && Math.abs(dy) < 40) {
+      if (dx < 0 && quizStep < TOTAL_STEPS) window.changeStep(1);
+      else if (dx > 0 && quizStep > 1) window.changeStep(-1);
+    }
+  });
+})();
 
 window.submitQuiz = function() {
   const phone   = document.getElementById('quizPhone');
@@ -494,6 +543,15 @@ function showSuccessNotification(message) {
     @keyframes toastOut {
       to { opacity: 0; transform: translateY(10px) scale(0.95); }
     }
+    @media (max-width: 768px) {
+      #toast-notification {
+        bottom: calc(82px + env(safe-area-inset-bottom)) !important;
+        right: 12px !important;
+        left: 12px !important;
+        max-width: none !important;
+        padding: 1rem 1.25rem !important;
+      }
+    }
   `;
   if (!document.getElementById('toast-style')) {
     style.id = 'toast-style';
@@ -554,17 +612,19 @@ window.scrollToElement = function(id) {
 })();
 
 // ──────────────────────────────────────────────────────
-// 18. HOVER GLOW ON PRODUCT CARDS (extra shimmer)
+// 18. HOVER GLOW ON PRODUCT CARDS (extra shimmer on desktop)
 // ──────────────────────────────────────────────────────
-document.querySelectorAll('.product-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top)  / rect.height) * 100;
-    card.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(255,255,255,0.04) 0%, rgba(20,24,31,1) 60%)`;
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  document.querySelectorAll('.product-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top)  / rect.height) * 100;
+      card.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(180,144,48,0.10) 0%, rgba(255,255,255,0.90) 70%)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.background = ''; });
   });
-  card.addEventListener('mouseleave', () => { card.style.background = ''; });
-});
+}
 
 // ──────────────────────────────────────────────────────
 // 19. STICKY MOBILE BAR OBSERVER
